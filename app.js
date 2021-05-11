@@ -53,7 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				let el_span = document.querySelector("span")
 				let containsSpan = squares[i].contains(el_span)
 				if(!containsSpan){
-					squares[i].appendChild(document.createTextNode("enter"))
+					let num = prompt("Enter num: ", "")
+					if(num != null){
+						squares[i].appendChild(document.createTextNode(num))
+					}
 				}
 			}			
 		}
