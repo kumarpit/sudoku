@@ -65,9 +65,68 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	//FIX!!!
+	// function solveBoard(bd){
+	// 	if(solved(bd)){
+	// 		return bd
+	// 		fillBoard()
+	// 	}else{
+	// 		solveBoards(nextBoards(bd))
+	// 		fillBoard()
+	// 	}
+	// }
+
+
+	// function solveBoards(lobd){
+	// 	if(lobd.length == 0){
+	// 		return false
+	// 	}else{
+	// 		if(!solveBoard(lobd.pop())){
+	// 			solveBoards(lobd)
+	// 		}
+	// 	}
+	// }
+
+	// function nextBoards(bd){
+	// 	bd.forEach((row, y) => {
+	// 		row.forEach((value, x) => {
+	// 			if(value == 0){
+	// 				makeNextBoards(bd, y, x)
+	// 			}
+	// 		})
+	// 	})
+	// }
+
+	// function makeNextBoards(bd, y, x){
+	// 	let nextBoards = [] //list of next boards
+	// 	for(let i = 0; i < 9; i++){
+	// 		bd[y][x] = i
+	// 		nextBoards.push(bd)
+	// 	}
+	// 	return checkValid(nextBoards)
+	// }
+
+	// function checkValid(lobd){
+		
+	// }
+
+	// function solved(bd){
+	// 	bd.forEach(row => {
+	// 		row.forEach(value => {
+	// 			if(value == 0){
+	// 				return false
+	// 			}
+	// 		})
+	// 	})
+
+	// 	return true
+	// }
 
 	makeLines()
 	fillBoard()
 	clickCtr()
+	//solveBoard(board)
 
+
+//TODO include sudoku problem generator - varying difficulty, add option to make own problem
 })
