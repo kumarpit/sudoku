@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	function fillBoard(){
+	function fillBoard(board){
+		clearBoard()
 		let index = 0
 		for(let i = 0; i < board.length; i++){
 			for(j = 0; j < board[i].length; j++){
@@ -45,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
 				index++
 			}
 		}
+	}
+
+	function clearBoard(){
+		let spans = document.querySelectorAll("span")
+		spans.forEach(span => {
+			span.innerHTML = ""
+		})
 	}
 
 	function clickCtr() {
@@ -87,24 +95,30 @@ document.addEventListener("DOMContentLoaded", () => {
 	// 	}
 	// }
 
-	// function nextBoards(bd){
-	// 	bd.forEach((row, y) => {
-	// 		row.forEach((value, x) => {
-	// 			if(value == 0){
-	// 				makeNextBoards(bd, y, x)
-	// 			}
-	// 		})
-	// 	})
-	// }
+	function nextBoards(bd){
+		for(let y = 0; y < bd.length; y++){
+			for(let x = 0; x < bd[y].length; x++){
+				if(bd[y][x] == 0){
+					return makeNextBoards(bd, y, x)
+				}
+			}
+		}
+	}
 
-	// function makeNextBoards(bd, y, x){
-	// 	let nextBoards = [] //list of next boards
-	// 	for(let i = 0; i < 9; i++){
-	// 		bd[y][x] = i
-	// 		nextBoards.push(bd)
-	// 	}
-	// 	return checkValid(nextBoards)
-	// }
+	function makeNextBoards(bd, y, x){
+		let nextBoards = [] //list of next boards
+		for(let i = 1; i < 10; i++){
+			let newBoard = [...bd]
+			let row = [...newBoard[y]]
+			row[x] = i
+			newBoard[y] = row
+			nextBoards.push(newBoard)
+		}
+		console.log(nextBoards)
+		// nextBoards.forEach(bd => {
+		// 	fillBoard(bd)
+		// })
+	}
 
 	// function checkValid(lobd){
 		
@@ -123,9 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	// }
 
 	makeLines()
-	fillBoard()
+	fillBoard(board)
 	clickCtr()
-	//solveBoard(board)
+	nextBoards(board)
 
 
 //TODO include sudoku problem generator - varying difficulty, add option to make own problem
