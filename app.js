@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				   [0,4,0,0,5,0,0,3,6],
 				   [7,0,3,0,1,8,0,0,0]]
 
+	let intermedBoards = [] //store intermed values of board
+
 	// const board = [[1,1,1,2,6,1,7,1,1],
 	// 			   [6,8,1,1,7,1,1,9,1],
 	// 			   [1,9,1,1,1,4,5,1,1],
@@ -201,6 +203,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	fillBoard(board)
 	clickCtr()
 	solveBoard(board)
+
+	//to visualize, store current board state in array, fillBoard using array in setInterval
+	//check after solving if the board still has empty spaces, if yes => current puzzle is unsolvable
+	//fix player play along feature
 	
 
 
