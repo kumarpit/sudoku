@@ -10,7 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
 				   [0,0,9,3,0,0,0,7,4],
 				   [0,4,0,0,5,0,0,3,6],
 				   [7,0,3,0,1,8,0,0,0]]
-	
+
+	// const board = [[1,1,1,2,6,1,7,1,1],
+	// 			   [6,8,1,1,7,1,1,9,1],
+	// 			   [1,9,1,1,1,4,5,1,1],
+	// 			   [8,2,1,1,1,1,1,4,1],
+	// 			   [1,1,4,6,1,2,9,1,1],
+	// 			   [1,5,1,1,1,3,1,2,8],
+	// 			   [1,1,9,3,1,1,1,7,4],
+	// 			   [1,4,1,1,5,1,1,3,6],
+	// 			   [7,1,3,1,1,8,1,1,1]] //testing for solved, dup funcs
 
 	function makeLines(){
 		for(let i = 3; i < squares.length; i += 9){
@@ -73,28 +82,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	//FIX!!!
-	// function solveBoard(bd){
-	// 	if(solved(bd)){
-	// 		return bd
-	// 		fillBoard()
-	// 	}else{
-	// 		solveBoards(nextBoards(bd))
-	// 		fillBoard()
-	// 	}
-	// }
+	function solveBoard(bd){
+		if(solved(bd)){
+			fillBoard(bd)
+		}else{
+			solveBoards(nextBoards(bd))
+		}
+	}
 
 
-	// function solveBoards(lobd){
-	// 	if(lobd.length == 0){
-	// 		return false
-	// 	}else{
-	// 		if(!solveBoard(lobd.pop())){
-	// 			solveBoards(lobd)
-	// 		}
-	// 	}
-	// }
+	function solveBoards(lobd){
+		if(lobd.length == 0){
+			return false
+		}else{
+			if(!solveBoard(lobd.pop())){
+				solveBoards(lobd)
+			}
+		}
+	}
 
+	//works, finds first empty space {row wise search}
 	function nextBoards(bd){
 		for(let y = 0; y < bd.length; y++){
 			for(let x = 0; x < bd[y].length; x++){
@@ -105,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	//works, takes empty space, makes 9 boards by filling the empty space with 1-9, returns the valid ones
 	function makeNextBoards(bd, y, x){
 		let nextBoards = [] //list of next boards
 		for(let i = 1; i < 10; i++){
@@ -114,32 +122,86 @@ document.addEventListener("DOMContentLoaded", () => {
 			newBoard[y] = row
 			nextBoards.push(newBoard)
 		}
-		console.log(nextBoards)
-		// nextBoards.forEach(bd => {
-		// 	fillBoard(bd)
-		// })
+		return keepValid(nextBoards)
 	}
 
-	// function checkValid(lobd){
-		
-	// }
+	//working, returns valid boards from given list of boards
+	function keepValid(lobd){
+		let valids = []
+		for(let i = 0; i < lobd.length; i++){
+			if(!dupRows(lobd[i]) && !dupColumns(lobd[i]) && !dupSubs(lobd[i])){
+				valids.push(lobd[i])
+			}
+		}
+		return valids
+	}
 
-	// function solved(bd){
-	// 	bd.forEach(row => {
-	// 		row.forEach(value => {
-	// 			if(value == 0){
-	// 				return false
-	// 			}
-	// 		})
-	// 	})
+	//works
+	function dupRows(bd){
+		//true if duplicate exists, else false
+		for(let r = 0; r < bd.length; r++){
+			for(let i = 0; i < bd[r].length; i++){
+				for(let j = i+1; j < bd[r].length; j++){
+					if(bd[r][i] == bd[r][j] && bd[r][i] != 0){
+						return true
+					}
+				}
+			}
+		}
+		return false
+	}
 
-	// 	return true
-	// }
+	//works
+	function dupColumns(bd){
+		for(let c = 0; c < bd[1].length; c++){
+			for(let r = 0; r < bd.length; r++){
+				for(let j = r+1; j < bd.length; j++){
+					if(bd[r][c] == bd[j][c] && bd[j][c] != 0){
+						return true
+					}
+				}
+			}
+		}
+		return false
+	}
+
+	//works
+	function dupSubs(bd){
+		let boxes = []
+		for(let i = 0; i < board.length; i++){
+			boxes[i] = []
+		}
+
+		for(let i = 0; i < bd.length; i++){
+			for(let j = 0; j < bd[i].length; j++){
+				let cell = bd[i][j]
+				if(cell !== 0){
+					let boxIndex = Math.floor((i/3))*3 + Math.floor(j/3)
+					if(boxes[boxIndex].includes(cell)){
+						return true
+					}else boxes[boxIndex].push(cell)
+				}
+			}
+		}
+		return false
+	}
+
+	//works, true if no blank spaces, else
+	function solved(bd){
+		for(let i = 0; i < bd.length; i++) {
+			for(let j = 0; j < bd[i].length; j++) {
+				if(bd[i][j] == 0)
+					return false
+			}
+		}
+		return true
+	}
 
 	makeLines()
 	fillBoard(board)
 	clickCtr()
-	nextBoards(board)
+	solveBoard(board)
+	
 
 
 //TODO include sudoku problem generator - varying difficulty, add option to make own problem
