@@ -1,3 +1,7 @@
+body{
+	background-color: lightblue;
+}
+
 .board div{
 	width: 40px;
 	height: 40px;
@@ -29,4 +33,15 @@
     line-height: normal;
     font-family: arial;
     font-size: 1.2em;
+}
+
+.button-container{
+	display: flex;
+	justify-content: center;
+}
+
+#solve-button{
+	border: 1px black solid;
+	background-color: white;
+	font-weight: 600;
 }
