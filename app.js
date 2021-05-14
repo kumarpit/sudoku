@@ -134,6 +134,7 @@ function solveBoards(lobd){
 			triedBoards.push(first)
 			solveBoards(lobd)
 		}else{
+			triedBoards.push(first)
 			tryFirst
 		}
 	}
@@ -260,15 +261,22 @@ sbutton.onclick = function(){
 let interval = 0;
 let index;
 vbutton.onclick = function(){
-	index = 0;
-	interval = setInterval(visualizeBoards, 500)
+	index = triedBoards.length-1/2 |0;
+	interval = setInterval(visualizeBoards, 10)
 }
 
 
 function visualizeBoards(){
-	if(index < triedBoards.length){
+	// if(index < triedBoards.length){
+	// 	fillBoard(triedBoards[index])
+	// 	index++
+	// }else{
+	// 	clearInterval(interval)
+	// }
+
+	if(index > 0){
 		fillBoard(triedBoards[index])
-		index++
+		index--
 	}else{
 		clearInterval(interval)
 	}
