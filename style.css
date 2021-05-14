@@ -40,7 +40,7 @@ body{
 	justify-content: center;
 }
 
-#solve-button{
+#solve-button, #create-board{
 	border: 1px black solid;
 	background-color: white;
 	font-weight: 600;

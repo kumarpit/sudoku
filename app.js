@@ -1,5 +1,8 @@
+//create solving loading screen when not visualizing
+
 const squares = document.querySelectorAll(".board div")
-const button = document.querySelector("#solve-button")
+const sbutton = document.querySelector("#solve-button")
+const cbutton = document.querySelector("#create-board")
 const board = [[0,0,0,2,6,0,7,0,1],
 			   [6,8,0,0,7,0,0,9,0],
 			   [1,9,0,0,0,4,5,0,0],
@@ -9,6 +12,32 @@ const board = [[0,0,0,2,6,0,7,0,1],
 			   [0,0,9,3,0,0,0,7,4],
 			   [0,4,0,0,5,0,0,3,6],
 			   [7,0,3,0,1,8,0,0,0]]
+
+const board2 = [[0,2,0,0,0,0,0,0,0],
+			    [0,0,0,6,0,0,0,0,3],
+			    [0,7,4,0,8,0,0,0,0],
+			    [0,0,0,0,0,3,0,0,2],
+			    [0,8,0,0,4,0,0,1,0],
+			    [6,0,0,5,0,0,0,0,0],
+			    [0,0,0,0,1,0,7,8,0],
+			    [5,0,0,0,0,9,0,0,0],
+			    [0,0,0,0,0,0,0,4,0]]
+
+const board3 = [[5,3,0,0,7,0,0,0,0],
+			    [6,0,0,1,9,5,0,0,0],
+			    [0,9,8,0,0,0,0,6,0],
+			    [8,0,0,0,6,0,0,0,3],
+			    [4,0,0,8,0,3,0,0,1],
+			    [7,0,0,0,2,0,0,0,6],
+			    [0,6,0,0,0,0,2,8,0],
+			    [0,0,0,4,1,9,0,0,5],
+			    [0,0,0,0,8,0,0,7,9]]
+
+const boards = [board, board2, board3]
+
+let boardNum;
+let filled = false;
+
 
 let intermedBoards = [] //store intermed values of board
 
@@ -200,13 +229,23 @@ function solved(bd){
 
 document.addEventListener("DOMContentLoaded", () => {
 	makeLines()
-	fillBoard(board)
-	clickCtr()
+	//clickCtr()
 })
 
 
-button.onclick = function(){
-	solveBoard(board)
+cbutton.onclick = function(){
+	boardNum = Math.random()*3 | 0;
+	console.log(boardNum)
+	fillBoard(boards[boardNum])
+	filled = true;
+}
+
+sbutton.onclick = function(){
+	if(filled){
+		solveBoard(boards[boardNum])
+	}else{
+		alert("pls create a board")
+	}
 }
 
 	//to visualize, store current board state in array, fillBoard using array in setInterval
