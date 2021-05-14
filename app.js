@@ -3,6 +3,7 @@
 const squares = document.querySelectorAll(".board div")
 const sbutton = document.querySelector("#solve-button")
 const cbutton = document.querySelector("#create-board")
+const vbutton = document.querySelector("#visual")
 const board = [[0,0,0,2,6,0,7,0,1],
 			   [6,8,0,0,7,0,0,9,0],
 			   [1,9,0,0,0,4,5,0,0],
@@ -32,6 +33,8 @@ const board3 = [[5,3,0,0,7,0,0,0,0],
 			    [0,6,0,0,0,0,2,8,0],
 			    [0,0,0,4,1,9,0,0,5],
 			    [0,0,0,0,8,0,0,7,9]]
+
+let triedBoards = [];
 
 const boards = [board, board2, board3]
 
@@ -125,8 +128,13 @@ function solveBoards(lobd){
 	if(lobd.length == 0){
 		return false
 	}else{
-		if(!solveBoard(lobd.pop())){
+		let first = lobd.pop()
+		let tryFirst = solveBoard(first)
+		if(!tryFirst){ //backtracking
+			triedBoards.push(first)
 			solveBoards(lobd)
+		}else{
+			tryFirst
 		}
 	}
 }
@@ -234,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 cbutton.onclick = function(){
+	triedBoards = []
 	boardNum = Math.random()*3 | 0;
 	console.log(boardNum)
 	fillBoard(boards[boardNum])
@@ -245,6 +254,23 @@ sbutton.onclick = function(){
 		solveBoard(boards[boardNum])
 	}else{
 		alert("pls create a board")
+	}
+}
+
+let interval = 0;
+let index;
+vbutton.onclick = function(){
+	index = 0;
+	interval = setInterval(visualizeBoards, 500)
+}
+
+
+function visualizeBoards(){
+	if(index < triedBoards.length){
+		fillBoard(triedBoards[index])
+		index++
+	}else{
+		clearInterval(interval)
 	}
 }
 
