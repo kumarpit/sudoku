@@ -1,4 +1,4 @@
 # Sudoku-with-Solver
-Allows user to play Sudoku and instantly check their answers using the solver. Also includes an option to visualize the backtracking search algorithm used.
+Sudoku web app that allows the user to solve sudoku puzzles of varying difficulty. The application utilizes a backtracking algorithm to provide solutions of any sudoku board and also gives the user the option to visualize the algorithm at work.
 
 NOTE: Work in Progress...
