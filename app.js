@@ -4,39 +4,42 @@ const squares = document.querySelectorAll(".board div")
 const sbutton = document.querySelector("#solve-button")
 const cbutton = document.querySelector("#create-board")
 const vbutton = document.querySelector("#visual")
-const board = [[0,0,0,2,6,0,7,0,1],
-			   [6,8,0,0,7,0,0,9,0],
-			   [1,9,0,0,0,4,5,0,0],
-			   [8,2,0,1,0,0,0,4,0],
-			   [0,0,4,6,0,2,9,0,0],
-			   [0,5,0,0,0,3,0,2,8],
-			   [0,0,9,3,0,0,0,7,4],
-			   [0,4,0,0,5,0,0,3,6],
-			   [7,0,3,0,1,8,0,0,0]]
 
-const board2 = [[0,2,0,0,0,0,0,0,0],
-			    [0,0,0,6,0,0,0,0,3],
-			    [0,7,4,0,8,0,0,0,0],
-			    [0,0,0,0,0,3,0,0,2],
-			    [0,8,0,0,4,0,0,1,0],
-			    [6,0,0,5,0,0,0,0,0],
-			    [0,0,0,0,1,0,7,8,0],
-			    [5,0,0,0,0,9,0,0,0],
-			    [0,0,0,0,0,0,0,4,0]]
+let board;
 
-const board3 = [[5,3,0,0,7,0,0,0,0],
-			    [6,0,0,1,9,5,0,0,0],
-			    [0,9,8,0,0,0,0,6,0],
-			    [8,0,0,0,6,0,0,0,3],
-			    [4,0,0,8,0,3,0,0,1],
-			    [7,0,0,0,2,0,0,0,6],
-			    [0,6,0,0,0,0,2,8,0],
-			    [0,0,0,4,1,9,0,0,5],
-			    [0,0,0,0,8,0,0,7,9]]
+// const board = [[0,0,0,2,6,0,7,0,1],
+// 			   [6,8,0,0,7,0,0,9,0],
+// 			   [1,9,0,0,0,4,5,0,0],
+// 			   [8,2,0,1,0,0,0,4,0],
+// 			   [0,0,4,6,0,2,9,0,0],
+// 			   [0,5,0,0,0,3,0,2,8],
+// 			   [0,0,9,3,0,0,0,7,4],
+// 			   [0,4,0,0,5,0,0,3,6],
+// 			   [7,0,3,0,1,8,0,0,0]]
+
+// const board2 = [[0,2,0,0,0,0,0,0,0],
+// 			    [0,0,0,6,0,0,0,0,3],
+// 			    [0,7,4,0,8,0,0,0,0],
+// 			    [0,0,0,0,0,3,0,0,2],
+// 			    [0,8,0,0,4,0,0,1,0],
+// 			    [6,0,0,5,0,0,0,0,0],
+// 			    [0,0,0,0,1,0,7,8,0],
+// 			    [5,0,0,0,0,9,0,0,0],
+// 			    [0,0,0,0,0,0,0,4,0]]
+
+// const board3 = [[5,3,0,0,7,0,0,0,0],
+// 			    [6,0,0,1,9,5,0,0,0],
+// 			    [0,9,8,0,0,0,0,6,0],
+// 			    [8,0,0,0,6,0,0,0,3],
+// 			    [4,0,0,8,0,3,0,0,1],
+// 			    [7,0,0,0,2,0,0,0,6],
+// 			    [0,6,0,0,0,0,2,8,0],
+// 			    [0,0,0,4,1,9,0,0,5],
+// 			    [0,0,0,0,8,0,0,7,9]]
 
 let triedBoards = [];
 
-const boards = [board, board2, board3]
+// const boards = [board, board2, board3]
 
 let boardNum;
 let filled = false;
@@ -117,8 +120,10 @@ function clickCtr() {
 
 function solveBoard(bd){
 	if(solved(bd)){
-		fillBoard(bd)
+		//triedBoards.push(bd)
+		return fillBoard(bd)
 	}else{
+		//triedBoards.push(bd)
 		solveBoards(nextBoards(bd))
 	}
 }
@@ -128,14 +133,12 @@ function solveBoards(lobd){
 	if(lobd.length == 0){
 		return false
 	}else{
-		let first = lobd.pop()
+		let first = lobd.shift()
 		let tryFirst = solveBoard(first)
 		if(!tryFirst){ //backtracking
-			triedBoards.push(first)
-			solveBoards(lobd)
+			return solveBoards(lobd)
 		}else{
-			triedBoards.push(first)
-			tryFirst
+			return tryFirst
 		}
 	}
 }
@@ -170,6 +173,7 @@ function keepValid(lobd){
 	for(let i = 0; i < lobd.length; i++){
 		if(!dupRows(lobd[i]) && !dupColumns(lobd[i]) && !dupSubs(lobd[i])){
 			valids.push(lobd[i])
+			//triedBoards.push(lobd[i])
 		}
 	}
 	return valids
@@ -236,23 +240,35 @@ function solved(bd){
 	return true
 }
 
+let diff;
+
 document.addEventListener("DOMContentLoaded", () => {
 	makeLines()
+	diff = prompt("Choose difficulty: ", "")
 	//clickCtr()
 })
 
 
 cbutton.onclick = function(){
 	triedBoards = []
-	boardNum = Math.random()*3 | 0;
-	console.log(boardNum)
-	fillBoard(boards[boardNum])
+	// boardNum = Math.random()*3 | 0;
+	// console.log(boardNum)
+	//fetch board
+	fetch("https://sugoku.herokuapp.com/board?difficulty=" + diff)
+	.then(response => {
+		return response.json();
+	})
+	.then(response => {
+		board = response.board;
+	})
+
+	fillBoard(board)
 	filled = true;
 }
 
 sbutton.onclick = function(){
 	if(filled){
-		solveBoard(boards[boardNum])
+		solveBoard(board)
 	}else{
 		alert("pls create a board")
 	}
@@ -261,7 +277,8 @@ sbutton.onclick = function(){
 let interval = 0;
 let index;
 vbutton.onclick = function(){
-	index = triedBoards.length-1/2 |0;
+	// index = triedBoards.length-1;
+	index = 0;
 	interval = setInterval(visualizeBoards, 10)
 }
 
@@ -274,9 +291,16 @@ function visualizeBoards(){
 	// 	clearInterval(interval)
 	// }
 
-	if(index > 0){
-		fillBoard(triedBoards[index])
-		index--
+	if(index < triedBoards.length){
+
+		if(solved(triedBoards[index])){
+			fillBoard(triedBoards[index])
+			clearInterval(interval)
+		}else{
+			fillBoard(triedBoards[index])
+			index++
+		}
+
 	}else{
 		clearInterval(interval)
 	}
