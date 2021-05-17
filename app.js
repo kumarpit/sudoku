@@ -9,7 +9,7 @@ let currIndex = 0
 
 document.addEventListener("DOMContentLoaded", function() {
      //fetch board from heroku
-     fetch("https://sugoku.herokuapp.com/board?difficulty=hard")
+     fetch("https://sugoku.herokuapp.com/board?difficulty=easy")
      .then(response => {
          return response.json();
      })
@@ -25,9 +25,9 @@ function fillBoard(bd){
         for(let j = 0; j < bd[i].length; j++){
             //set numbers from board in correct positions
             //disable input
-            if(board[i][j] !== 0){
-                grid[j + i*gridDim].children[0].value = board[i][j];
-                grid[j + i*gridDim].children[0].disabled = true;
+            if(bd[i][j] !== 0){
+                grid[j + i*gridDim].children[0].value = bd[i][j];
+                // grid[j + i*gridDim].children[0].disabled = true;
             }
         }
     }
@@ -44,14 +44,14 @@ function solve(bd){
     for(let i = 1; i < 10; i++){
         if(valid(bd, empty, i)){
             bd[empty.r][empty.c] = i
-            triedBoards.push(bd)
+            // triedBoards.push(bd)
 
             if(solve(bd)){
                 return true
             }
 
             bd[empty.r][empty.c] = 0
-            triedBoards.push(bd)
+            // triedBoards.push(bd)
         }
     }
 
@@ -84,7 +84,7 @@ function valid(bd, cell, num){
             }
         }
     }
-
+    
     return true
 }
 
@@ -113,8 +113,6 @@ function findCordEmpty(bd){
 
 sbutton.onclick = function(){
     solve(board)
-    console.log(triedBoards)
-    // console.log(valid(board, {r: 0, c: 0}, 1))
 } 
 
 vbutton.onclick = function(){
@@ -127,4 +125,5 @@ function visualize(){
         currIndex++
     } else clearInterval(interval)
 }
+
 
