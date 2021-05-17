@@ -1,100 +1,278 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-	<title>Sudoku</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-<div class="board">
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-</div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>sudoku</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="grid-container">
+        
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
 
-<div class="button-container">
-	<button id="create-board"> create </button>
-	<button id="solve-button"> solve </button>
-	<button id="visual"> visualize </button>
-</div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
 
-<script type="text/javascript" src="app.js"></script>
-</body>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+                <div>
+                    <input type="number" min="1" max="9">
+                </div>
+            </div>
+
+            <button class="solve">solve</button>
+            <button class="visual">visualize</button>
+        </div>
+
+
+        
+        
+        <script src="app.js"></script>
+    </body>
 </html>
