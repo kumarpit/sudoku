@@ -37,6 +37,11 @@
 .wrapper .header h1{
     font-family: "Archivo Narrow";
 }
+
+.radio label{
+    font-family: "Arial";
+    font-size: 0.9em;
+}
 /* 
 .solve{
     
