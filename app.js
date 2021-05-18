@@ -1,24 +1,14 @@
 const grid = document.querySelectorAll(".grid-container div");
 const gridDim  = 9;
+const cbutton = document.querySelector(".create")
 const sbutton = document.querySelector(".solve")
 const vbutton = document.querySelector(".visual")
+const ele = document.getElementsByName("difficulty")
 let interval = 0
 let board;
 let triedBoards =  []
 let currIndex = 0
-
-document.addEventListener("DOMContentLoaded", function() {
-     //fetch board from heroku
-     fetch("https://sugoku.herokuapp.com/board?difficulty=easy")
-     .then(response => {
-         return response.json();
-     })
-     .then(response => {
-         board = response.board;
-         console.log(board)
-         fillBoard(board)
-     })
-})
+let diff;
 
 function fillBoard(bd){
     for(let i = 0; i < bd.length; i++){
@@ -109,6 +99,31 @@ function findCordEmpty(bd){
             }
         }
     }
+}
+
+cbutton.onclick = function(){    
+
+    for(let i = 0; i < ele.length; i++){
+        if(ele[i].checked){
+            diff = ele[i].value
+            break
+        }
+    }
+
+    if(diff == null){
+        alert("select difficulty")    
+        return
+    }
+
+     fetch("https://sugoku.herokuapp.com/board?difficulty=" + diff)
+     .then(response => {
+         return response.json();
+     })
+     .then(response => {
+         board = response.board;
+         console.log(board)
+         fillBoard(board)
+     })
 }
 
 sbutton.onclick = function(){
