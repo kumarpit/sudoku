@@ -10,38 +10,55 @@ let triedBoards =  []
 let currIndex = 0
 let diff;
 
-function fillBoard(bd){
+function fillBoard(bd, ques){
+    // clearBoard()
     for(let i = 0; i < bd.length; i++){
         for(let j = 0; j < bd[i].length; j++){
             //set numbers from board in correct positions
             //disable input
             if(bd[i][j] !== 0){
                 grid[j + i*gridDim].children[0].value = bd[i][j];
-                // grid[j + i*gridDim].children[0].disabled = true;
+                if(ques){
+                    grid[j + i*gridDim].children[0].disabled = true;
+                }
             }
         }
     }
 }
 
+function clearBoard(){
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[i].length; j++){
+
+            if(!grid[j + i*gridDim].children[0].disabled){
+                grid[j + i*gridDim].children[0].value = null;
+            }
+        }
+    }   
+}
+
 function solve(bd){
     let empty;
+    let copy;
 
     if(solved(bd)){
-        fillBoard(bd)
+        fillBoard(bd, false)
         return true
     }else empty = findCordEmpty(bd) //returns coordinates of first empty cell (row wise search)
 
     for(let i = 1; i < 10; i++){
         if(valid(bd, empty, i)){
             bd[empty.r][empty.c] = i
-            // triedBoards.push(bd)
+            copy = $.extend(true, [], bd);
+            triedBoards.push(copy)
 
             if(solve(bd)){
                 return true
             }
 
             bd[empty.r][empty.c] = 0
-            // triedBoards.push(bd)
+            copy = $.extend(true, [], bd);
+            triedBoards.push(copy)
         }
     }
 
@@ -122,7 +139,7 @@ cbutton.onclick = function(){
      .then(response => {
          board = response.board;
          console.log(board)
-         fillBoard(board)
+         fillBoard(board, true)
      })
 }
 
@@ -136,9 +153,21 @@ vbutton.onclick = function(){
 
 function visualize(){
     if(currIndex < triedBoards.length){
-        fillBoard(triedBoards[currIndex])
+        clearBoard()
+        fillBoard(triedBoards[currIndex], false)
         currIndex++
     } else clearInterval(interval)
+
 }
+
+// function clearBoard(){
+//     for(let i = 0; i < board.length; i++){
+//         for(let j = 0; j < board[i].length; j++){
+//             if(grid[j + i*gridDim].children[0].disabled){
+//                 board[i][j] = 0;
+//             }
+//         }
+//     }
+// }
 
 
