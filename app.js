@@ -5,7 +5,7 @@ const sbutton = document.querySelector(".solve")
 const vbutton = document.querySelector(".visual")
 const ele = document.getElementsByName("difficulty")
 let interval = 0
-let board;
+let board = [];
 let triedBoards =  []
 let currIndex = 0
 let diff;
@@ -26,11 +26,14 @@ function fillBoard(bd, ques){
     }
 }
 
-function clearBoard(){
+function clearBoard(ques){
     for(let i = 0; i < board.length; i++){
         for(let j = 0; j < board[i].length; j++){
+            if(ques){
+                grid[j + i*gridDim].children[0].value = null;
+                grid[j + i*gridDim].children[0].disabled = false;
 
-            if(!grid[j + i*gridDim].children[0].disabled){
+            }else if(!grid[j + i*gridDim].children[0].disabled){
                 grid[j + i*gridDim].children[0].value = null;
             }
         }
@@ -119,6 +122,9 @@ function findCordEmpty(bd){
 }
 
 cbutton.onclick = function(){    
+    if(board.length !== 0){
+        clearBoard(true)
+    }
 
     for(let i = 0; i < ele.length; i++){
         if(ele[i].checked){
@@ -153,7 +159,7 @@ vbutton.onclick = function(){
 
 function visualize(){
     if(currIndex < triedBoards.length){
-        clearBoard()
+        clearBoard(false)
         fillBoard(triedBoards[currIndex], false)
         currIndex++
     } else clearInterval(interval)
