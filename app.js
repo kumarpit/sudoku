@@ -4,6 +4,7 @@ const cbutton = document.querySelector(".create")
 const sbutton = document.querySelector(".solve")
 const vbutton = document.querySelector(".visual")
 const ele = document.getElementsByName("difficulty")
+// const status = document.getElementById("status")
 let interval = 0
 let board = [];
 let triedBoards =  []
@@ -45,6 +46,7 @@ function solve(bd){
     let copy;
 
     if(solved(bd)){
+        console.log("solved")
         fillBoard(bd, false)
         return true
     }else empty = findCordEmpty(bd) //returns coordinates of first empty cell (row wise search)
@@ -150,6 +152,7 @@ cbutton.onclick = function(){
 }
 
 sbutton.onclick = function(){
+    console.log("solving")
     solve(board)
 } 
 
