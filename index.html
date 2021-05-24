@@ -14,7 +14,8 @@
     </head>
     <body>
         <div class="container">
-            <div class="grid-container">
+            <div class="parent-board">
+                <div class="grid-container">
         
                 <div>
                     <input type="number" min="1" max="9">
@@ -267,19 +268,26 @@
                 <div>
                     <input type="number" min="1" max="9">
                 </div>
+                </div>
             </div>
 
-            <button class="create">create</button>
-            <button class="solve">solve</button>
-            <button class="visual">visualize</button>
+            <div class="setting-wrapper">
+                <div class="settings">
+                    <div class="buttons">
+                        <button class="create">create</button>
+                        <button class="solve">solve</button>
+                        <button class="visual">visualize</button>
+                    </div>
 
-            <div class="radio">
-                <input type="radio" name="difficulty" id="easy" value="easy">
-                <label for="easy">easy</label><br>
-                <input type="radio" name="difficulty" id="medium" value="medium">
-                <label for="medium">medium</label><br>
-                <input type="radio" name="difficulty" id="hard" value="hard">
-                <label for="hard">hard</label>
+                    <div class="radio">
+                        <input type="radio" name="difficulty" id="easy" value="easy">
+                        <label for="easy">easy</label><br>
+                        <input type="radio" name="difficulty" id="medium" value="medium">
+                        <label for="medium">medium</label><br>
+                        <input type="radio" name="difficulty" id="hard" value="hard">
+                        <label for="hard">hard.</label>
+                    </div>
+                </div>
             </div>
 
            <!-- <h3 id="status">status</h3> -->
