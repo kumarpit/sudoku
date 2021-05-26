@@ -1,6 +1,7 @@
 body{
     background-color: #f2f2f2;
 }
+
 .container{
     display: inline-grid;
     grid-template-rows: auto auto;
@@ -27,10 +28,13 @@ body{
 }
 
 .grid-container div input{
-    height: 90%;
-    width: 85%;
+    height: 38px;
+    width: 38px;
+    padding: 0;
     text-align: center;
     font-size: 1em;
+    border-radius: 0;
+    border: 1px solid black;
 }
 
 .setting-wrapper{
@@ -53,9 +57,4 @@ body{
 input[type="radio"] {
     margin-top: -1px;
     vertical-align: middle;
-}
-
-input[type="number"]{
-    border-radius: 0;
-    border: 1px solid black;
 }
