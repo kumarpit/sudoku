@@ -159,9 +159,11 @@ clsbutton.onclick = function(){
 
 cbutton.onclick = function(){
     if(interval != 0){ 
+        triedBoards =  []; 
         clearInterval(interval);  
+        currIndex = 0;
     }
-    
+
     if(board.length !== 0){
         clearBoard(true)
     }
@@ -169,8 +171,7 @@ cbutton.onclick = function(){
 }
 
 sbutton.onclick = function(){
-    // console.log("solving")
-    triedBoards =  [];  
+    // console.log("solving") 
     show = true;
     if(!solve(board)){
         alert("unsolveable");
