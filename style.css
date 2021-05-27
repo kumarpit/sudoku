@@ -70,6 +70,22 @@ body{
     row-gap: 1em;
 }
 
+.header-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    width: 360px;
+}
+
+h1{
+    font-family: arial;
+    text-align: left;
+    font-weight: 600;
+    /* font-style: italic; */
+}
+
 .parent-board{
     display: flex;
     width: 95vw;
