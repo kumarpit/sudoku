@@ -123,10 +123,16 @@ function findCordEmpty(bd){
     }
 }
 
+function togglePopUp(){
+    document.getElementById("popup").classList.toggle("active");
+}
+
 cbutton.onclick = function(){    
     if(board.length !== 0){
         clearBoard(true)
     }
+
+    togglePopUp();
 
     for(let i = 0; i < ele.length; i++){
         if(ele[i].checked){

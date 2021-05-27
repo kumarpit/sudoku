@@ -2,6 +2,67 @@ body{
     background-color: #f2f2f2;
 }
 
+/* pop-up */
+.pop-up .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.pop-up .pop-up-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 250px;
+    height: 220px;
+    background-color: white;
+    border-radius: 0.3em;
+    z-index: 2;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.pop-up .pop-up-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 1.5em 0px 1em 0px;
+}
+
+.pop-up .close-btn{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #e1e1e1;
+    border: 1.5px solid black;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+}
+
+.pop-up.active .overlay{
+    display: block;
+}
+
+.pop-up.active .pop-up-content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.pop-up .close-btn:hover{
+    cursor: pointer;
+}
+
 .container{
     display: inline-grid;
     grid-template-rows: auto auto;
@@ -37,6 +98,11 @@ body{
     border: 1px solid black;
 }
 
+input[type="number"]:disabled {
+   background: #eeeeee;
+   color: black;
+}
+
 .setting-wrapper{
     display: flex;
     justify-content: center;
@@ -52,9 +118,23 @@ body{
 .radio label{
     font-family: "Arial";
     font-size: 0.9em;
+    font-style: italic;
 }
 
 input[type="radio"] {
     margin-top: -1px;
     vertical-align: middle;
+}
+
+button{
+    border-radius: 0.7em;
+    border: 1.3px solid black;
+    background-color: white;
+    text-align: center;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #e1e1e1;
+    color: black;
 }
