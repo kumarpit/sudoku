@@ -32,7 +32,8 @@ body{
 .pop-up .pop-up-title{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    padding: 1.5em 0px 1em 0px;
+    font-size: 1.8em;
+    padding: 0.5em 0px 0.5em 0px;
 }
 
 .pop-up .close-btn{
@@ -118,7 +119,7 @@ input[type="number"]:disabled {
 .radio label{
     font-family: "Arial";
     font-size: 0.9em;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 input[type="radio"] {
