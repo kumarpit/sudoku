@@ -3,12 +3,14 @@ const gridDim  = 9;
 const cbutton = document.querySelector(".create")
 const sbutton = document.querySelector(".solve")
 const vbutton = document.querySelector(".visual")
+const clsbutton = document.querySelector(".close-btn")
 const ele = document.getElementsByName("difficulty")
 // const status = document.getElementById("status")
 let interval = 0
 let board = [];
-let triedBoards =  []
+let triedBoards =  [];
 let currIndex = 0
+let show = true; //optional parameters not working for some reason
 let diff;
 
 function fillBoard(bd, ques){
@@ -46,8 +48,11 @@ function solve(bd){
     let copy;
 
     if(solved(bd)){
-        console.log("solved")
-        fillBoard(bd, false)
+        // console.log("solved")
+        // debugger;
+        if(show){
+            fillBoard(bd, false)
+        }
         return true
     }else empty = findCordEmpty(bd) //returns coordinates of first empty cell (row wise search)
 
@@ -100,7 +105,6 @@ function valid(bd, cell, num){
     return true
 }
 
-
 //return true if no blank spaces remaining, else false
 function solved(bd){
     for(let i = 0; i < bd.length; i++){
@@ -127,13 +131,7 @@ function togglePopUp(){
     document.getElementById("popup").classList.toggle("active");
 }
 
-cbutton.onclick = function(){    
-    if(board.length !== 0){
-        clearBoard(true)
-    }
-
-    togglePopUp();
-
+clsbutton.onclick = function(){
     for(let i = 0; i < ele.length; i++){
         if(ele[i].checked){
             diff = ele[i].value
@@ -155,15 +153,38 @@ cbutton.onclick = function(){
          console.log(board)
          fillBoard(board, true)
      })
+
+     togglePopUp();
+}
+
+cbutton.onclick = function(){
+    if(interval != 0){ 
+        clearInterval(interval);  
+    }
+    
+    if(board.length !== 0){
+        clearBoard(true)
+    }
+    togglePopUp();
 }
 
 sbutton.onclick = function(){
-    console.log("solving")
-    solve(board)
+    // console.log("solving")
+    triedBoards =  [];  
+    show = true;
+    if(!solve(board)){
+        alert("unsolveable");
+    }
 } 
 
 vbutton.onclick = function(){
-    interval = setInterval(visualize, 100)
+    if(solved(board)){
+        interval = setInterval(visualize, 100)
+    }else{
+        show = false;
+        solve(board);
+        interval = setInterval(visualize, 100)
+    }
 }
 
 function visualize(){
@@ -171,7 +192,7 @@ function visualize(){
         clearBoard(false)
         fillBoard(triedBoards[currIndex], false)
         currIndex++
-    } else clearInterval(interval)
+    } else clearInterval(interval);
 
 }
 

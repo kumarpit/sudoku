@@ -62,6 +62,7 @@ body{
 
 .pop-up .close-btn:hover{
     cursor: pointer;
+    background: #c1c1c1;
 }
 
 .container{
