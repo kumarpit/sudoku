@@ -9,6 +9,8 @@ The first empty square in the board is found (row wise search) and is filled wit
 # Visualization
 The visualization works by keeping track of all changes made to the board in an array. Whenever a number is filled to the board, a copy of the board is made and added to an array. When the user clicks on the visualize button, all boards in this array are shown with an interval.
 
+![example-gif](https://github.com/kumarpit/sudoku/blob/main/gifs/Animation2.gif)
+
 # To-Do
 Add OCR to enable user to upload photo of sudoku puzzle and the app can overlay the solution over the uploaded picture.
 
