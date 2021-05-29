@@ -9,12 +9,11 @@ const ele = document.getElementsByName("difficulty")
 let interval = 0
 let board = [];
 let triedBoards =  [];
-let currIndex = 0
+let currIndex = 0;
 let show = true; //optional parameters not working for some reason
 let diff;
 
 function fillBoard(bd, ques){
-    // clearBoard()
     for(let i = 0; i < bd.length; i++){
         for(let j = 0; j < bd[i].length; j++){
             //set numbers from board in correct positions
@@ -48,8 +47,6 @@ function solve(bd){
     let copy;
 
     if(solved(bd)){
-        // console.log("solved")
-        // debugger;
         if(show){
             fillBoard(bd, false)
         }
@@ -59,20 +56,20 @@ function solve(bd){
     for(let i = 1; i < 10; i++){
         if(valid(bd, empty, i)){
             bd[empty.r][empty.c] = i
-            copy = $.extend(true, [], bd);
-            triedBoards.push(copy)
+            copy = $.extend(true, [], bd); //copy of board
+            triedBoards.push(copy) //copy added to triedBoards
 
             if(solve(bd)){
-                return true
+                return true;
             }
 
-            bd[empty.r][empty.c] = 0
+            bd[empty.r][empty.c] = 0 //backtrack and fill with next valid value
             copy = $.extend(true, [], bd);
-            triedBoards.push(copy)
+            triedBoards.push(copy) //copy added to triedBoards
         }
     }
 
-    return false //if it reaches here, board is unsolvable
+    return false //board is unsolvable
 }
 
 function valid(bd, cell, num){
@@ -190,11 +187,10 @@ vbutton.onclick = function(){
 
 function visualize(){
     if(currIndex < triedBoards.length){
-        clearBoard(false)
-        fillBoard(triedBoards[currIndex], false)
-        currIndex++
+        clearBoard(false);
+        fillBoard(triedBoards[currIndex], false);
+        currIndex++;
     } else clearInterval(interval);
-
 }
 
 // function clearBoard(){
