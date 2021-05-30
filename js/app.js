@@ -10,7 +10,7 @@ let interval = 0
 let board = [];
 let triedBoards =  [];
 let currIndex = 0;
-let show = true; //optional parameters not working for some reason
+let show = true; 
 let diff;
 
 function fillBoard(bd, ques){
