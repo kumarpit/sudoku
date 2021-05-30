@@ -155,10 +155,11 @@ clsbutton.onclick = function(){
 }
 
 cbutton.onclick = function(){
+    triedBoards =  []; 
+    currIndex = 0;
+    
     if(interval != 0){ 
-        triedBoards =  []; 
         clearInterval(interval);  
-        currIndex = 0;
     }
 
     if(board.length !== 0){
@@ -193,14 +194,25 @@ function visualize(){
     } else clearInterval(interval);
 }
 
-// function clearBoard(){
-//     for(let i = 0; i < board.length; i++){
-//         for(let j = 0; j < board[i].length; j++){
-//             if(grid[j + i*gridDim].children[0].disabled){
-//                 board[i][j] = 0;
-//             }
-//         }
-//     }
-// }
 
+//make box lines
+function makeBoxes(){
+    for(let i = 3; i < grid.length; i += 9){
+        grid[i].children[0].style.borderLeft = "2px solid black";
+    }
+
+    for(let i = 6; i < grid.length; i += 9){
+        grid[i].children[0].style.borderLeft = "2px solid black";
+    }
+
+    for(let i = 27; i < 36; i += 1){
+        grid[i].children[0].style.borderTop = "2px solid black";
+    }
+
+    for(let i = 54; i < 63; i += 1){
+        grid[i].children[0].style.borderTop = "2px solid black";
+    }
+}
+
+makeBoxes();
 
