@@ -11,6 +11,6 @@ The visualization works by keeping track of all changes made to the board in an 
 
 ![example-gif](https://github.com/kumarpit/sudoku/blob/main/gifs/Animation2.gif)
 
-# To-Do
-Add OCR to enable user to upload photo of sudoku puzzle and the app can overlay the solution over the uploaded picture.
+# Todo
+- [ ] Add OCR to enable user to upload photo of sudoku puzzle and the app can overlay the solution over the uploaded picture.
 
