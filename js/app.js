@@ -194,7 +194,6 @@ function visualize(){
     } else clearInterval(interval);
 }
 
-
 //make box lines
 function makeBoxes(){
     for(let i = 3; i < grid.length; i += 9){

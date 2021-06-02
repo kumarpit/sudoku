@@ -66,9 +66,7 @@ body{
 }
 
 .container{
-    display: inline-grid;
-    grid-template-rows: auto auto;
-    row-gap: 1em;
+    height: 96vh;
 }
 
 .header-wrapper{
@@ -89,9 +87,16 @@ h1{
 
 .parent-board{
     display: flex;
+    flex-direction: column;
     width: 95vw;
+    height: 95%;
     justify-content: center;
-    margin-top: 3em;
+    align-items: center;
+    /*margin-top: 3em;*/
+}
+
+.buttons{
+    margin-top: 1.5em;
 }
 
 .grid-container{
@@ -122,7 +127,7 @@ input[type="number"]:disabled {
    color: black;
 }
 
-.setting-wrapper{
+/*.setting-wrapper{
     display: flex;
     justify-content: center;
 }
@@ -133,7 +138,7 @@ input[type="number"]:disabled {
     justify-content: space-between;
     align-items: center;
 }
-
+*/
 .radio label{
     font-family: "Arial";
     font-size: 0.9em;
