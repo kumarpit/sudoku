@@ -1,5 +1,6 @@
 body{
     background-color: #f2f2f2;
+    margin: 0;
 }
 
 /* pop-up */
@@ -88,7 +89,7 @@ h1{
 .parent-board{
     display: flex;
     flex-direction: column;
-    width: 95vw;
+    width: 100vw;
     height: 95%;
     justify-content: center;
     align-items: center;

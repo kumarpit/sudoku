@@ -194,22 +194,24 @@ function visualize(){
     } else clearInterval(interval);
 }
 
+
 //make box lines
 function makeBoxes(){
+    let lines = "1.5px solid black";
     for(let i = 3; i < grid.length; i += 9){
-        grid[i].children[0].style.borderLeft = "2px solid black";
+        grid[i].children[0].style.borderLeft = lines;
     }
 
     for(let i = 6; i < grid.length; i += 9){
-        grid[i].children[0].style.borderLeft = "2px solid black";
+        grid[i].children[0].style.borderLeft = lines;
     }
 
     for(let i = 27; i < 36; i += 1){
-        grid[i].children[0].style.borderTop = "2px solid black";
+        grid[i].children[0].style.borderTop = lines;
     }
 
     for(let i = 54; i < 63; i += 1){
-        grid[i].children[0].style.borderTop = "2px solid black";
+        grid[i].children[0].style.borderTop = lines;
     }
 }
 
