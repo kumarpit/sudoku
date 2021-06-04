@@ -13,4 +13,5 @@ The visualization works by keeping track of all changes made to the board in an 
 
 # Todo
 - [ ] Add OCR to enable the user to upload a photo of a sudoku puzzle and the app can overlay the solution over the uploaded picture.
+- [ ] Add confetti animation if the user solution is correct.
 
