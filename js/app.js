@@ -160,14 +160,12 @@ cbutton.onclick = function(){
     triedBoards =  []; 
     currIndex = 0;
     
-    if(interval != 0){ 
-        clearInterval(interval);  
-    }
+    if(interval != 0) clearInterval(interval);  
 
     if(board.length !== 0){
         clearBoard(true)
     }
-    togglePopUp();
+    togglePopUp()
 }
 
 sbutton.onclick = function(){
@@ -189,6 +187,7 @@ vbutton.onclick = function(){
 }
 
 clrbutton.onclick = function(){
+    if(interval != 0) clearInterval(interval);  
     clearBoard(true)
 }
 
