@@ -4,6 +4,8 @@ const cbutton = document.querySelector(".create")
 const sbutton = document.querySelector(".solve")
 const vbutton = document.querySelector(".visual")
 const clsbutton = document.querySelector(".close-btn")
+const clrbutton = document.querySelector(".clear")
+const chckbutton = document.querySelector(".check")
 const ele = document.getElementsByName("difficulty")
 // const status = document.getElementById("status")
 let interval = 0
@@ -185,6 +187,14 @@ vbutton.onclick = function(){
         interval = setInterval(visualize, 100)
     }
 }
+
+clrbutton.onclick = function(){
+    clearBoard(true)
+}
+
+// chckbutton.onclick() = function(){
+      // check answers, confetti
+// }
 
 function visualize(){
     if(currIndex < triedBoards.length){
