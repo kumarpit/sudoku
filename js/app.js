@@ -30,15 +30,29 @@ function fillBoard(bd, ques){
     }
 }
 
+function createCustom(){
+    for(let i = 0; i < gridDim; i++){
+        if(!board[i]) board[i] = []
+        for(let j = 0; j < gridDim; j++){
+            if(grid[j + i*gridDim].children[0].value == ""){
+                board[i][j] = 0
+            }else{
+                board[i][j] = parseInt(grid[j + i*gridDim].children[0].value)
+                grid[j + i*gridDim].children[0].disabled = true;
+            }
+        }
+    }
+}
+
 function clearBoard(ques){
     for(let i = 0; i < board.length; i++){
         for(let j = 0; j < board[i].length; j++){
             if(ques){
-                grid[j + i*gridDim].children[0].value = null;
+                grid[j + i*gridDim].children[0].value = "";
                 grid[j + i*gridDim].children[0].disabled = false;
 
             }else if(!grid[j + i*gridDim].children[0].disabled){
-                grid[j + i*gridDim].children[0].value = null;
+                grid[j + i*gridDim].children[0].value = "";
             }
         }
     }   
@@ -104,6 +118,15 @@ function valid(bd, cell, num){
     return true
 }
 
+function empty(){
+    for(let i = 0; i < grid.length; i++){
+        if(grid[i].children[0].value !== ""){
+            return false
+        }
+    }
+    return true
+}
+
 //return true if no blank spaces remaining, else false
 function solved(bd){
     for(let i = 0; i < bd.length; i++){
@@ -165,7 +188,12 @@ cbutton.onclick = function(){
     if(board.length !== 0){
         clearBoard(true)
     }
-    togglePopUp()
+
+    if(empty()){
+        togglePopUp()
+    }else{
+        createCustom()
+    }
 }
 
 sbutton.onclick = function(){
@@ -189,6 +217,7 @@ vbutton.onclick = function(){
 clrbutton.onclick = function(){
     if(interval != 0) clearInterval(interval);  
     clearBoard(true)
+    board = []
 }
 
 // chckbutton.onclick() = function(){
