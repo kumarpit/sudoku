@@ -10,6 +10,7 @@ const ele = document.getElementsByName("difficulty")
 // const status = document.getElementById("status")
 let interval = 0
 let board = [];
+let userSolution = [];
 let triedBoards =  [];
 let currIndex = 0;
 let show = true; 
@@ -39,6 +40,18 @@ function createCustom(){
             }else{
                 board[i][j] = parseInt(grid[j + i*gridDim].children[0].value)
                 grid[j + i*gridDim].children[0].disabled = true;
+            }
+        }
+    }
+}
+
+function check(bd){
+    for(let i = 0; i < bd.length; i++){
+        for(let j = 0; j < bd[i].length; j++){
+            if(bd[i][j] == 0){
+                console.log("empty found")
+            }else{
+                console.log(valid(bd, {r: i, c: j}, bd[i][j]))
             }
         }
     }
@@ -91,14 +104,14 @@ function solve(bd){
 function valid(bd, cell, num){
     //check for dupRows
     for(let i = 0; i < bd[0].length; i++){
-        if(bd[cell.r][i] == num){
+        if(i !== cell.c && bd[cell.r][i] == num){
             return false
         }
     }
 
     //check for dupColumns
     for(let i = 0; i < bd.length; i++){
-        if(bd[i][cell.c] == num){
+        if(i !== cell.r && bd[i][cell.c] == num){
             return false
         }
     }
@@ -109,7 +122,7 @@ function valid(bd, cell, num){
 
     for(let i = box_y*3; i < box_y*3 + 3; i++){
         for(let j = box_x*3; j < box_x*3 + 3; j++){
-            if(bd[i][j] == num){
+            if(i !== cell.r && j !== cell.c && bd[i][j] == num){
                 return false
             }
         }
@@ -220,9 +233,20 @@ clrbutton.onclick = function(){
     board = []
 }
 
-// chckbutton.onclick() = function(){
-      // check answers, confetti
-// }
+chckbutton.onclick = function(){
+    //transferring board on screen to board
+    for(let i = 0; i < board.length; i++){
+        if(!userSolution[i]) userSolution[i] = []
+        for(let j = 0; j < board[i].length; j++){
+            if(grid[j + i*gridDim].children[0].value == ""){
+                userSolution[i][j] = 0
+            }else{
+                userSolution[i][j] = grid[j + i*gridDim].children[0].value
+            }
+        }
+    }
+    check(userSolution)
+}
 
 function visualize(){
     if(currIndex < triedBoards.length){
