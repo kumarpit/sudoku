@@ -49,9 +49,11 @@ function check(bd){
     for(let i = 0; i < bd.length; i++){
         for(let j = 0; j < bd[i].length; j++){
             if(bd[i][j] == 0){
-                console.log("empty found")
+                grid[j + i*gridDim].children[0].style.color = "red"
             }else{
-                console.log(valid(bd, {r: i, c: j}, bd[i][j]))
+                if(valid(bd, {r: i, c: j}, bd[i][j])){
+                    console.log(true) 
+                }else grid[j + i*gridDim].children[0].style.color = "red"
             }
         }
     }
@@ -63,9 +65,11 @@ function clearBoard(ques){
             if(ques){
                 grid[j + i*gridDim].children[0].value = "";
                 grid[j + i*gridDim].children[0].disabled = false;
+                grid[j + i*gridDim].children[0].style.color = "black"
 
             }else if(!grid[j + i*gridDim].children[0].disabled){
                 grid[j + i*gridDim].children[0].value = "";
+                grid[j + i*gridDim].children[0].style.color = "black"
             }
         }
     }   
