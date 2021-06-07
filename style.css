@@ -102,7 +102,6 @@ body{
     font-size: 1em;
     border-radius: 0;
     border: 0.5px solid black;
-    display: inline-flex;
 }
 
 input[type="number"]:disabled {
