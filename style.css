@@ -68,21 +68,6 @@ body{
     height: 96vh;
 }
 
-.header-wrapper{
-    display: flex;
-    justify-content: center;
-}
-
-.header{
-    width: 360px;
-}
-
-h1{
-    font-family: arial;
-    text-align: left;
-    font-weight: 600;
-}
-
 .parent-board{
     display: flex;
     flex-direction: column;
