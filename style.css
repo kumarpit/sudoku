@@ -139,3 +139,28 @@ button:hover{
     background-color: #e1e1e1;
     color: black;
 }
+
+.info-tip{
+    position: relative;
+}
+
+.info-tip:hover {
+    cursor: pointer;
+}
+
+.info-tip:hover + .info-text{
+    visibility: visible;
+}
+
+.info-text{
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    font-family: arial;
+    font-size: 0.8em;
+    padding: 0.5em;
+    background-color: #e1e1e1;
+    border-radius: 0.5em;
+    margin-left: 10px;
+    visibility: hidden;
+}
